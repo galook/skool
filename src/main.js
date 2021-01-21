@@ -2,6 +2,7 @@ import Vue from 'vue';
 import { ToastPlugin, ModalPlugin } from 'bootstrap-vue';
 import VueCompositionAPI from '@vue/composition-api';
 import VueSweetalert2 from 'vue-sweetalert2';
+import LoadScript from 'vue-plugin-load-script';
 
 import router from './router';
 import store from './store';
@@ -14,11 +15,11 @@ import './global-components';
 import '@/libs/portal-vue';
 import '@/libs/toastification';
 import '@sweetalert2/themes/borderless/borderless.scss';
-
 // BSV Plugin Registration
 Vue.use(ToastPlugin);
 Vue.use(ModalPlugin);
-Vue.use(VueSweetalert2);
+Vue.use(VueSweetalert2); 
+Vue.use(LoadScript);
 
 // Composition API
 Vue.use(VueCompositionAPI);
