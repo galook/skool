@@ -78,15 +78,7 @@ export default {
     window.addEventListener("resize", this.handleWindowResize);
     window.addEventListener("scroll", this.handleScroll);
   },
-  async beforeCreate() {
-    await this.$loadScript("https://quvia.cz:4443/portalAPI.js");
-    let quser = await q.userRequest();
 
-    this.$s.user.username = quser.username
-    this.$s.user.verificationKey = quser.verificationKey
-    this.$s.user.status = "Logged in"
-
-},
   destroyed() {
     window.removeEventListener("resize", this.handleWindowResize);
     window.removeEventListener("scroll", this.handleScroll);

@@ -26,6 +26,7 @@
     "perfect-scrollbar": "^1.4.0",
     "postcss-rtl": "^1.5.0",
     "prismjs": "^1.16.0",
+    "sweetalert2": "^10.10.1",
     "vee-validate": "^2.2.8",
     "vue": "^2.6.10",
     "vue-acl": "4.0.7",
@@ -59,7 +60,8 @@
     "vue2-hammer": "^2.1.2",
     "vuedraggable": "^2.21.0",
     "vuejs-datepicker": "^1.5.4",
-    "vuesax": "jd-0001/vuesax",
+    "vuesax": "^3.12.2",
+    "vuesax2": "npm:vuesax@^4.0.1-alpha.25",
     "vuex": "^3.1.1",
     "xlsx": "^0.15.0"
   },

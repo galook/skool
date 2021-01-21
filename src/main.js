@@ -18,6 +18,10 @@ import 'vuesax/dist/vuesax.css' // Vuesax
 Vue.use(Vuesax)
 
 
+import sweetAlert from 'sweetalert2'
+
+Vue.prototype.alert = sweetAlert;
+
 // axios
 import axios from './axios.js'
 Vue.prototype.$http = axios
@@ -25,9 +29,9 @@ Vue.prototype.$http = axios
 
 
 import LoadScript from 'vue-plugin-load-script';
- 
+
 Vue.use(LoadScript);
-  
+
 // Filters
 import './filters/filters.js'
 
@@ -84,7 +88,7 @@ require('./assets/css/iconfont.css')
 
 import storage from './storage.js'
 
-Vue.prototype.$s = storage;
+Vue.prototype.storage = storage;
 // Vue.prototype.$i = interact;
 
 
@@ -113,8 +117,21 @@ Vue.prototype.$s = storage;
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+
+async function start() {
+
+await Vue.loadScript('https://quvia.cz:4443/portalAPI.js')
+storage.user = await q.requestLogin() 
+storage.user.status = "Logged In"
+
+
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app')
+
+}
+
+
+start()

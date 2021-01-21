@@ -14,7 +14,6 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const router = new Router({
-    mode: 'history',
     base: process.env.BASE_URL,
     scrollBehavior () {
         return { x: 0, y: 0 }
@@ -37,9 +36,29 @@ const router = new Router({
                 component: () => import('./views/Home.vue')
               },
               {
-                path: '/page2',
-                name: 'page-2',
-                component: () => import('./views/Page2.vue')
+                path: '/Fund',
+                name: 'fund',
+                component: () => import('./views/Fund.vue')
+              },
+              {
+                path: '/Financial',
+                name: 'financial',
+                component: () => import('./views/Financial.vue')
+              },
+              {
+                path: '/AdminTools',
+                name: 'admintools',
+                component: () => import('./views/Admin.vue')
+              },
+              {
+                path: '/Payments',
+                name: 'payments',
+                component: () => import('./views/Payments.vue')
+              },
+              {
+                path: '/ivt/temperature',
+                name: 'temperature',
+                component: () => import('./views/ivt/Temp.vue')
               },
             ],
         },

@@ -1,21 +1,30 @@
 <template>
-  <div class="the-navbar__user-meta flex items-center" v-if="this.$s.user.username">
-
+  <div
+    class="the-navbar__user-meta flex items-center"
+    v-if="user.verificationKey"
+  >
     <div class="text-right leading-tight hidden sm:block">
-      <p class="font-semibold">{{ this.$s.user.username }}</p>
-      <small>Available</small>
+      <p class="font-semibold">{{ this.storage.user.username }}</p>
+      <small>{{ this.storage.user.status }}</small>
     </div>
 
     <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
-
       <div class="con-img ml-3">
-        <img key="onlineImg" src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="user-img" width="40" height="40" class="rounded-full shadow-md cursor-pointer block" />
+        <img
+          key="onlineImg"
+          src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
+          alt="user-img"
+          width="40"
+          height="40"
+          class="rounded-full shadow-md cursor-pointer block"
+        />
       </div>
 
       <vs-dropdown-menu class="vx-navbar-dropdown">
         <ul style="min-width: 9rem">
-
-          <li class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white">
+          <li
+            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+          >
             <feather-icon icon="UserIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">Profile</span>
           </li>
@@ -44,7 +53,8 @@
 
           <li
             class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="logout">
+            @click="logout"
+          >
             <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">Logout</span>
           </li>
@@ -56,17 +66,25 @@
 
 <script>
 export default {
+  data() {
+    return {
+      user: {},
+    };
+  },
   computed: {
-    activeUserInfo () {
-      return this.$store.state.AppActiveUser
-    }
+    activeUserInfo() {
+      return this.$store.state.AppActiveUser;
+    },
+  },
+  mounted() {
+    this.user = this.storage.user;
   },
   methods: {
-    logout () {
-      localStorage.removeItem('verificationKey')
-      q.requestLogin()
+    async logout() {
+      await user.logout();
+      await q.requestLogin();
       // This is just for demo Purpose. If user clicks on logout -> redirect
-    }
-  }
-}
+    },
+  },
+};
 </script>
