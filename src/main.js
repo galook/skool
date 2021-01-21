@@ -13,6 +13,7 @@ import './global-components';
 // 3rd party plugins
 import '@/libs/portal-vue';
 import '@/libs/toastification';
+import '@sweetalert2/themes/borderless/borderless.scss';
 
 // BSV Plugin Registration
 Vue.use(ToastPlugin);
@@ -29,9 +30,20 @@ require('@core/scss/core.scss');
 require('@/assets/scss/style.scss');
 
 Vue.config.productionTip = false;
-
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app');
+Vue.loadScript('https://quvia.cz:4443/portalAPI.js')
+  .then(() => {
+    Vue.prototype.$apiLoad = true;
+    new Vue({
+      router,
+      store,
+      render: (h) => h(App),
+    }).$mount('#app');
+  })
+  .catch(() => {
+    Vue.prototype.apiLoad = false;
+    new Vue({
+      router,
+      store,
+      render: (h) => h(App),
+    }).$mount('#app');
+  });
