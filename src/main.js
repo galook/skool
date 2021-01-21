@@ -3,6 +3,8 @@ import { ToastPlugin, ModalPlugin } from 'bootstrap-vue';
 import VueCompositionAPI from '@vue/composition-api';
 import VueSweetalert2 from 'vue-sweetalert2';
 import LoadScript from 'vue-plugin-load-script';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import Ripple from 'vue-ripple-directive'
 
 import router from './router';
 import store from './store';
@@ -20,9 +22,13 @@ Vue.use(ToastPlugin);
 Vue.use(ModalPlugin);
 Vue.use(VueSweetalert2); 
 Vue.use(LoadScript);
-
+Vue.use(BootstrapVue)
 // Composition API
 Vue.use(VueCompositionAPI);
+
+Ripple.color = 'rgba(255, 255, 255, 0.35)';
+Ripple.zIndex = 55;
+Vue.directive('ripple', Ripple);
 
 // import core styles
 require('@core/scss/core.scss');

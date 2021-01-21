@@ -1,24 +1,11 @@
 <template>
   <div>
     <b-card title="Users">
-      <b-card-text>
-          
-      </b-card-text>
-     
+      <b-button v-ripple.400="'rgba(255, 255, 255, 0.15)'">Ahoj</b-button>
     </b-card>
   </div>
 </template>
 
-<script>
-import { BCard, BCardText, BLink } from 'bootstrap-vue';
-
-export default {
-  components: {
-    BCard,
-    BCardText,
-    BLink,
-  },
-};
-</script>
+<script></script>
 
 <style></style>
