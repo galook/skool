@@ -1,11 +1,38 @@
 <template>
   <div>
+    <statisticGroup :items="itemsStats" />
     <b-card title="Users">
-      <b-button v-ripple.400="'rgba(255, 255, 255, 0.15)'">Ahoj</b-button>
+      hey
     </b-card>
   </div>
 </template>
 
-<script></script>
+<script>
+import statisticGroup from "./plugin/statisticGroup.vue"
+
+export default {
+  data() {
+    return {
+      fields: ['username', 'accessLevel', 'suspended', 'discord', 'language'],
+      
+    }
+  },
+
+  async mounted() {
+    let user = await q.userRequest()
+    this.items = await user.getAllUsers()
+
+    
+
+    this.items.forEach(item => { 
+      item.suspended = item.suspended ? 'Yes' : ''
+    })
+
+  },
+  components: {
+    statisticGroup
+  }
+}
+</script>
 
 <style></style>

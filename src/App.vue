@@ -17,10 +17,11 @@ import { useWindowSize, useCssVar } from "@vueuse/core";
 
 import store from "@/store";
 
-const LayoutVertical = () => import("@/layouts/vertical/LayoutVertical.vue");
-const LayoutHorizontal = () =>
-  import("@/layouts/horizontal/LayoutHorizontal.vue");
-const LayoutFull = () => import("@/layouts/full/LayoutFull.vue");
+
+// eslint-disable-next-line
+import LayoutVertical from "@/layouts/vertical/LayoutVertical.vue"
+import LayoutHorizontal from "@/layouts/horizontal/LayoutHorizontal.vue"
+import LayoutFull from "@/layouts/full/LayoutFull.vue"
 
 export default {
   components: {

@@ -26,7 +26,7 @@ Vue.use(BootstrapVue)
 // Composition API
 Vue.use(VueCompositionAPI);
 
-Ripple.color = 'rgba(255, 255, 255, 0.35)';
+Ripple.color = 'rgba(0, 0, 0, 0.2)';
 Ripple.zIndex = 55;
 Vue.directive('ripple', Ripple);
 

@@ -1,10 +1,12 @@
 <template>
   <ul>
+   
     <component
       :is="resolveNavItemComponent(item)"
-      v-for="item in items"
+      v-for="(item, i) in items"
       :key="item.header || item.title"
       :item="item"
+      :style="i == 0 ? 'margin-top: 7%' : ''"
     />
   </ul>
 </template>
