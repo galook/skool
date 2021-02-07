@@ -2,7 +2,7 @@
   <b-card no-body class="card-statistics">
     <b-card-header>
       <b-card-title>Statistics</b-card-title>
-      <b-card-text class="mr-25 mb-0"> Updated 1 month ago </b-card-text>
+      <b-card-text class="mr-25 mb-0"> {{ text }} </b-card-text>
     </b-card-header>
     <b-card-body class="statistics-body">
       <b-row>
@@ -41,6 +41,9 @@ export default {
     items: {
       type: Array,
     },
+    text: {
+      default:  ""
+    }
   },
 };
 </script>

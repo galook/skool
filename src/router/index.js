@@ -53,6 +53,20 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/payments',
+      name: 'payments',
+      component: () => import('@/views/PaymentsManagement.vue'),
+      meta: {
+        pageTitle: 'Payments Management',
+        breadcrumb: [
+          {
+            text: 'Payments Management',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('@/views/Login.vue'),

@@ -1,37 +1,28 @@
 <template>
   <div>
-    <statisticGroup :items="itemsStats" />
-    <b-card title="Users">
-      hey
+    <img src="https://quvia.cz/qlogo.svg" class="w-64" alt="The Official Quvia Logo">
+    <br><br><br> <b-card title="Home Screen Plan">
+      <ul>
+        <li>
+          Upcoming Event
+        </li>
+        <li>
+          Payments Due Sooner Than They Might think 
+        </li>
+      </ul>
     </b-card>
   </div>
 </template>
 
 <script>
-import statisticGroup from "./plugin/statisticGroup.vue"
 
 export default {
   data() {
-    return {
-      fields: ['username', 'accessLevel', 'suspended', 'discord', 'language'],
-      
+    return {      
     }
   },
 
-  async mounted() {
-    let user = await q.userRequest()
-    this.items = await user.getAllUsers()
 
-    
-
-    this.items.forEach(item => { 
-      item.suspended = item.suspended ? 'Yes' : ''
-    })
-
-  },
-  components: {
-    statisticGroup
-  }
 }
 </script>
 

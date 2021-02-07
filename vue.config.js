@@ -1,4 +1,10 @@
 const path = require('path')
+const fs = require('fs')
+
+const webpack = require('webpack')
+
+const packageJson = fs.readFileSync('./package.json')
+const version = JSON.parse(packageJson).version || 0
 
 module.exports = {
   publicPath: '/',
@@ -21,6 +27,13 @@ module.exports = {
         '@axios': path.resolve(__dirname, 'src/libs/axios'),
       },
     },
+    plugins: [
+      new webpack.DefinePlugin({
+          'process.env': {
+              PACKAGE_VERSION: '"' + version + '"'
+          }
+      })
+  ]
   },
   chainWebpack: config => {
     config.module

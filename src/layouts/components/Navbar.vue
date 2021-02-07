@@ -24,17 +24,29 @@
       >
         <template #button-content>
           <div class="d-sm-flex d-none user-nav">
-            <p class="user-name font-weight-bolder mb-0">John Doe</p>
-            <span class="user-status">Admin</span>
+            <p class="user-name font-weight-bolder mb-0">
+              {{ quviauser.username ? quviauser.username : 'Guest' }}
+            </p>
+            <span class="user-status">{{ role }}</span>
           </div>
-          <b-avatar
-            size="40"
-            variant="light-primary"
-            badge
-            :src="require('@/assets/images/avatars/13-small.png')"
-            class="badge-minimal"
-            badge-variant="success"
-          />
+          <b-link @click="wantPurl">
+            <b-avatar
+              size="40"
+              variant="light-primary"
+              badge
+              :text="
+                quviauser.username
+                  ? quviauser.username.split(' ')[0][0] +
+                    (quviauser.username.split(' ')[1]
+                      ? quviauser.username.split(' ')[1][0]
+                      : '')
+                  : 'I'
+              "
+              :src="Purl"
+              class="badge-minimal"
+              badge-variant="success"
+            />
+          </b-link>
         </template>
 
         <b-dropdown-item link-class="d-flex align-items-center">
@@ -80,6 +92,23 @@ import {
 import DarkToggler from '@core/layouts/components/app-navbar/components/DarkToggler.vue';
 
 export default {
+  data() {
+    return {
+      role: '...',
+      Purl: '',
+      sDate: '',
+      i: 0, 
+    };
+  },
+  watch: {
+    quviauser: {
+      handler: function (newVal, oldVal) {
+        // watch it
+        console.log('Prop changed: ', newVal, ' | was: ', oldVal);
+      },
+      deep: true,
+    },
+  },
   components: {
     BLink,
     BNavbarNav,
@@ -91,6 +120,36 @@ export default {
     // Navbar Components
     DarkToggler,
   },
+  async created() {
+    this.role = (await this.quviauser.getHighestRole()).name;
+    this.pic();
+  },
+  methods: {
+    wantPurl() {
+      if (!this.sDate) {
+        console.log('No date');
+        this.sDate = new Date();
+      }
+      if ((Date.now() - this.sDate.getTime()) > 230){
+      console.log('No small')
+      this.i = 1
+      return this.sDate = new Date()
+      }
+      if (this.i < 1) return this.i++;
+
+      localStorage.setItem(
+        'wantPurl',
+        !JSON.parse(localStorage.getItem('wantPurl'))
+      );
+      this.i = 0
+      this.pic();
+    },
+    async pic() {
+      let wantPurl = JSON.parse(localStorage.getItem('wantPurl'));
+      this.Purl = wantPurl ? await this.quviauser.getProfilePictrueUrl() : '';
+    },
+  },
+
   props: {
     toggleVerticalMenuActive: {
       type: Function,

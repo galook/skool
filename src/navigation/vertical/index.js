@@ -14,4 +14,9 @@ export default [
     route: 'users',
     icon: 'UserIcon',
   },
+  {
+    title: 'Payments',
+    route: 'payments',
+    icon: 'CreditCardIcon',
+  },
 ]
